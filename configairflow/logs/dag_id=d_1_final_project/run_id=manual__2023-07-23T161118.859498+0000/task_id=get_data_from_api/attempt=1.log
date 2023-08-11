@@ -1,0 +1,73 @@
+[2023-07-23 16:11:21,317] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: d_1_final_project.get_data_from_api manual__2023-07-23T16:11:18.859498+00:00 [queued]>
+[2023-07-23 16:11:21,329] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: d_1_final_project.get_data_from_api manual__2023-07-23T16:11:18.859498+00:00 [queued]>
+[2023-07-23 16:11:21,330] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-07-23 16:11:21,331] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-07-23 16:11:21,331] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-07-23 16:11:21,352] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): get_data_from_api> on 2023-07-23 16:11:18.859498+00:00
+[2023-07-23 16:11:21,361] {standard_task_runner.py:52} INFO - Started process 5124 to run task
+[2023-07-23 16:11:21,365] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'd_1_final_project', 'get_data_from_api', 'manual__2023-07-23T16:11:18.859498+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/d_1_final_project.py', '--cfg-path', '/tmp/tmp1tbyong4', '--error-file', '/tmp/tmpl1pnr34p']
+[2023-07-23 16:11:21,366] {standard_task_runner.py:80} INFO - Job 10: Subtask get_data_from_api
+[2023-07-23 16:11:21,448] {task_command.py:369} INFO - Running <TaskInstance: d_1_final_project.get_data_from_api manual__2023-07-23T16:11:18.859498+00:00 [running]> on host 320bc8363a40
+[2023-07-23 16:11:21,552] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=d_1_final_project
+AIRFLOW_CTX_TASK_ID=get_data_from_api
+AIRFLOW_CTX_EXECUTION_DATE=2023-07-23T16:11:18.859498+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-07-23T16:11:18.859498+00:00
+[2023-07-23 16:11:21,793] {covid_scrapper.py:13} INFO - GET DATA FROM API COMPLETED
+[2023-07-23 16:11:21,803] {covid_scrapper.py:15} INFO - DATA FROM API TO DATAFRAME READY
+[2023-07-23 16:11:21,819] {logging_mixin.py:115} INFO - <class 'pandas.core.frame.DataFrame'>
+RangeIndex: 145 entries, 0 to 144
+Data columns (total 20 columns):
+ #   Column                    Non-Null Count  Dtype 
+---  ------                    --------------  ----- 
+ 0   CLOSECONTACT              145 non-null    int64 
+ 1   CONFIRMATION              145 non-null    int64 
+ 2   PROBABLE                  145 non-null    int64 
+ 3   SUSPECT                   145 non-null    int64 
+ 4   closecontact_dikarantina  145 non-null    int64 
+ 5   closecontact_discarded    145 non-null    int64 
+ 6   closecontact_meninggal    145 non-null    int64 
+ 7   confirmation_meninggal    145 non-null    int64 
+ 8   confirmation_sembuh       145 non-null    int64 
+ 9   kode_kab                  145 non-null    object
+ 10  kode_prov                 145 non-null    object
+ 11  nama_kab                  145 non-null    object
+ 12  nama_prov                 145 non-null    object
+ 13  probable_diisolasi        145 non-null    int64 
+ 14  probable_discarded        145 non-null    int64 
+ 15  probable_meninggal        145 non-null    int64 
+ 16  suspect_diisolasi         145 non-null    int64 
+ 17  suspect_discarded         145 non-null    int64 
+ 18  suspect_meninggal         145 non-null    int64 
+ 19  tanggal                   145 non-null    object
+dtypes: int64(15), object(5)
+memory usage: 22.8+ KB
+[2023-07-23 16:11:21,820] {logging_mixin.py:115} INFO - None
+[2023-07-23 16:11:21,834] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/d_1_final_project.py", line 27, in fun_get_data_from_api
+    port=get_conn.port
+  File "/opt/airflow/dags/modules/connector.py", line 10, in connect_mysql
+    user, password, host, port, db
+  File "<string>", line 2, in create_engine
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/deprecations.py", line 298, in warned
+    return fn(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 518, in create_engine
+    u = _url.make_url(url)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/url.py", line 711, in make_url
+    return _parse_rfc1738_args(name_or_url)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/url.py", line 772, in _parse_rfc1738_args
+    components["port"] = int(components["port"])
+ValueError: invalid literal for int() with base 10: '192.168.1.14'
+[2023-07-23 16:11:21,863] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=d_1_final_project, task_id=get_data_from_api, execution_date=20230723T161118, start_date=20230723T161121, end_date=20230723T161121
+[2023-07-23 16:11:21,880] {standard_task_runner.py:97} ERROR - Failed to execute job 10 for task get_data_from_api (invalid literal for int() with base 10: '192.168.1.14'; 5124)
+[2023-07-23 16:11:21,899] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-07-23 16:11:21,959] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
